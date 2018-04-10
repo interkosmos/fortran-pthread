@@ -1,0 +1,12 @@
+# C extensions
+*.so
+
+# Distribution / packaging
+env/
+build/
+dist/
+var/
+
+# Other stuff
+*.swp
+*.pyc
