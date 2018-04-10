@@ -6,8 +6,9 @@ OBJ     = pthread.o
 
 DIR     = examples
 SIMPLE  = simple
+MULTI   = multi
 
-all: $(OBJ) $(SIMPLE)
+all: $(OBJ) $(SIMPLE) $(MULTI)
 
 pthread: $(OBJ)
 
@@ -17,7 +18,10 @@ $(OBJ):
 $(SIMPLE): $(DIR)/$*.f90 $(OBJ)
 	$(FC) $(CFLAGS) -o $@ $? $(LDFLAGS)
 
+$(MULTI): $(DIR)/$*.f90 $(OBJ)
+	$(FC) $(CFLAGS) -o $@ $? $(LDFLAGS)
+
 .PHONY: clean
 
 clean:
-	rm *.mod $(OBJ) $(SIMPLE)
+	rm *.mod $(OBJ) $(SIMPLE) $(MULTI)

@@ -16,6 +16,7 @@ $ flang -c pthread.f90
 Please check the directory `examples` for some demos:
 
 * **simple** runs a routine inside a `pthread`.
+* **multi** runs a routine inside several `pthreads`.
 
 Compile the examples with:
 ```
