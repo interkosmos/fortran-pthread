@@ -21,7 +21,7 @@ module pthread
     public :: pthread_join
 
     interface
-        ! int pthread_create(pthread_t *, const pthread_attr_t *, void *(void *), void *);
+        ! int pthread_create(pthread_t *, const pthread_attr_t *, void *(void *), void *)
         integer(kind=c_int) function pthread_create(thread, attr, start_routine, arg) bind(c)
             import :: c_ptr, c_funptr, c_int
             type(c_ptr),    value :: thread
@@ -30,8 +30,8 @@ module pthread
             type(c_ptr),    value :: arg
         end function pthread_create
 
-        ! int pthread_join(pthread_t, void **);
-        integer(kind=c_int) function pthread_join( thread, value_ptr) bind( c)
+        ! int pthread_join(pthread_t, void **)
+        integer(kind=c_int) function pthread_join( thread, value_ptr) bind(c)
             import :: c_ptr, c_int, pthread_t
             type(pthread_t), value :: thread
             type(c_ptr)            :: value_ptr
