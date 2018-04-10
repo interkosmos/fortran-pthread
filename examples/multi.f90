@@ -8,8 +8,8 @@ program main
     use :: pthread
 
     interface
-        subroutine hello() bind(c)
-            use, intrinsic :: iso_c_binding
+        subroutine hello(n)
+            integer, intent(in) :: n
         end subroutine hello
     end interface
 
@@ -28,8 +28,7 @@ program main
     end do
 end program main
 
-subroutine hello(n) bind(c)
-    use, intrinsic :: iso_c_binding
+subroutine hello(n)
     integer, intent(in) :: n
     integer             :: i
 

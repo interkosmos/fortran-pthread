@@ -8,8 +8,7 @@ program main
     use :: pthread
 
     interface
-        subroutine hello() bind(c)
-            use, intrinsic :: iso_c_binding
+        subroutine hello()
         end subroutine hello
     end interface
 
@@ -20,8 +19,7 @@ program main
     rc = pthread_join(thread, c_null_ptr)
 end program main
 
-subroutine hello() bind(c)
-    use, intrinsic :: iso_c_binding
+subroutine hello()
     integer :: i
 
     do i = 1, 10
