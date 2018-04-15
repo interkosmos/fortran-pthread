@@ -3,7 +3,7 @@ Proof of concept of an interface to POSIX Threads (`pthreads`) for modern
 Fortran (2003, 2008, 2018).
 
 ## Build
-Use the Makefile to build the interface:
+Use BSD make to build the interface:
 ```
 $ make pthread
 ```
