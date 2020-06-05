@@ -1,5 +1,5 @@
 # fortran-pthread
-Proof of concept of an interface to POSIX Threads for Fortran 2003.
+Proof of concept of Fortran 2003 interfaces to POSIX Threads.
 
 ## Build
 Use the provided `Makefile` to build the interfaces:
