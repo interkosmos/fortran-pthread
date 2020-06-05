@@ -1,27 +1,29 @@
-FC      = gfortran8
-CFLAGS  = -Ofast -Wl,-rpath=/usr/local/lib/gcc8/ -I/usr/local/include/ -L/usr/local/lib/
-LDFLAGS = -lpthread
-SRC     = pthread.f90
-OBJ     = pthread.o
+.POSIX:
+.SUFFIXES:
 
-DIR     = examples
-SIMPLE  = simple
-MULTI   = multi
+FC       = gfortran
+PREFIX   = /usr/local
+FFLAGS   = -Wall -fmax-errors=1
+LDFLAGS  = -I$(PREFIX)/include/ -L$(PREFIX)/local/lib/
+LDLIBS   = -lpthread
+TARGET   = pthread.o
+
+EXAMPLES = examples
+SIMPLE   = simple
+MULTI    = multi
+
+.PHONY: all clean
 
 all: $(OBJ) $(SIMPLE) $(MULTI)
 
-pthread: $(OBJ)
+$(TARGET):
+	$(FC) -c src/pthread.f90
 
-$(OBJ):
-	$(FC) -c $(SRC)
+$(SIMPLE): $(TARGET)
+	$(FC) $(FFLAGS) $(LDFLAGS) -o $(SIMPLE) $(EXAMPLES)/$(SIMPLE)/$(SIMPLE).f90 $(LDLIBS)
 
-$(SIMPLE): $(DIR)/$*.f90 $(OBJ)
-	$(FC) $(CFLAGS) -o $@ $? $(LDFLAGS)
-
-$(MULTI): $(DIR)/$*.f90 $(OBJ)
-	$(FC) $(CFLAGS) -o $@ $? $(LDFLAGS)
-
-.PHONY: clean
+$(MULTI): $(TARGET)
+	$(FC) $(FFLAGS) $(LDFLAGS) -o $(MULTI) $(EXAMPLES)/$(MULTI)/$(MULTI).f90 $(LDLIBS)
 
 clean:
-	rm *.mod $(OBJ) $(SIMPLE) $(MULTI)
+	rm *.mod *.o $(SIMPLE) $(MULTI)
